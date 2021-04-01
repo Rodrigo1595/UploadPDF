@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run UploadFiles2-UploadFiles",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/uploadfiles2-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/UploadFilesUploadFiles/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/UploadFiles",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/UploadFiles2/UploadFiles\"}"
+      },
+      "envFile": "${workspaceFolder}/UploadFiles/.env2",
+      "preLaunchTask": "Build UploadFiles2"
+    }
+  ]
+}

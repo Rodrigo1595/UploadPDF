@@ -1,0 +1,50 @@
+_schema-version: "3.2"
+ID: UploadFiles2
+version: 0.0.1
+modules:
+- name: uploadfiles2-approuter
+  type: approuter.nodejs
+  path: uploadfiles2-approuter
+  requires:
+  - name: UploadFiles2_html_repo_runtime
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: UploadFiles2_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: UploadFiles2_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - UploadFiles-content.zip
+      name: UploadFiles
+      target-path: resources/
+- name: UploadFiles
+  type: html5
+  path: UploadFiles
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: UploadFiles2_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: UploadFiles2_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install

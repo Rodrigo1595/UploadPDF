@@ -1,0 +1,16 @@
+<mvc:View
+	controllerName="UploadFiles.UploadFiles.controller.Main"
+    xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m">
+    <Page title="{i18n>title}">
+            <content>
+                <l:VerticalLayout>
+                    <u:FileUploader change="onUploadPress"  id="fileUploader"
+							name="ImagesUpload" buttonOnly="true" buttonText="Browse"/>
+                    <Label text="{imagesModel>/Name}"/>
+                    <Button text="Ver PDF Subido" press="onPressButton" type="Emphasized"></Button>    
+                </l:VerticalLayout>
+                
+             </content>
+    </Page>
+</mvc:View>
